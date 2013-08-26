@@ -18,13 +18,10 @@ local function make(length, usenum, usechar)
 
 	for i=1,length do
 		if string.lower(usenum) == "y" and string.lower(usechar) == "y" then
-			--print("im running")--check
 			a = half()
 			if a then
-				--print("true")
 				slot = getNum()
 			else
-				--print("false")
 				slot = getChar()
 			end
 		elseif string.lower(usenum) == "y" and string.lower(usechar) == "n" then
@@ -36,7 +33,6 @@ local function make(length, usenum, usechar)
 		code[i] = slot
 
 	end
-	--print("\n")
 	print("Your Code Is: ")
 	for i=1, length do
 		io.write(code[i])
