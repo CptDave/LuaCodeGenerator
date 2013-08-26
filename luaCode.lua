@@ -1,4 +1,5 @@
---code generator
+--code generator By: CptDave
+require("data")
 code = {}
 
 local function make(length, usenum, usechar)
@@ -6,8 +7,11 @@ local function make(length, usenum, usechar)
 	if string.lower(usenum) ~= "y" and string.lower(usenum) ~= "n" or string.lower(usechar) ~= "y" and string.lower(usechar) ~= "n" then
 		print("error 1, code requires either letters or number.")
 		return
+	elseif string.lower(usenum) == "n" and string.lower(usechar) == "n" then
+		print("error 2, requires either numbers, letters or both.")
+		return
 	elseif type(length) ~= "number" then
-		print("error 2, required number for length.")
+		print("error 3, required number for length.")
 		return
 	end
 
@@ -15,18 +19,18 @@ local function make(length, usenum, usechar)
 	for i=1,length do
 		if string.lower(usenum) == "y" and string.lower(usechar) == "y" then
 			--print("im running")--check
-			a = dofile("halfhalf.lua")
+			a = half()
 			if a then
 				--print("true")
-				slot = dofile("usenumOC.lua")
+				slot = getNum()
 			else
 				--print("false")
-				slot = dofile("usecharOC.lua")
+				slot = getChar()
 			end
 		elseif string.lower(usenum) == "y" and string.lower(usechar) == "n" then
-			slot = dofile("usenumOC.lua")
+			slot = getNum()
 		elseif string.lower(usenum) == "n" and string.lower(usechar) == "y" then
-			slot = dofile("usecharOC.lua")
+			slot = getChar()
 		end
 
 		code[i] = slot
